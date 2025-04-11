@@ -1,0 +1,35 @@
+# Thư mục vendor (sinh ra bởi Composer)
+vendor/
+
+# File cấu hình môi trường
+.env
+.env.*
+
+# Cache và logs
+*.log
+storage/
+cache/
+tmp/
+
+# Các thư mục IDE
+.vscode/
+.idea/
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
+
+# File backup hoặc tạm
+*.bak
+*.tmp
+*.swp
+
+# Composer lock file (nếu bạn không muốn commit nó)
+# composer.lock
+
+# PHPUnit
+.phpunit.result.cache
+
+# Các file upload (nếu có lưu trong project)
+uploads/
+public/uploads/
