@@ -26,8 +26,40 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     exit();
 }
 
-// Xử lý đăng ký và đăng nhập (không cần token)
 if ($request_uri === "/register" && $method === "POST") {
     echo json_encode($authController->register($data));
     exit();
+}elseif ($request_uri === "/login" && $method === "POST") {
+    echo json_encode($authController->login($data));
+    exit();
 }
+
+$headers = getallheaders();
+
+
+$authHeader = $headers["Authorization"] ?? $headers["authorization"] ?? null;
+if (!$authHeader || !str_starts_with($authHeader, "Bearer ")) {
+    error_log("Token không tồn tại hoặc sai định dạng!");
+    http_response_code(401);
+    echo json_encode(["error" => "Token is missing"]);
+    exit();
+}
+
+
+$token = str_replace("Bearer ", "", $authHeader);
+error_log("Token nhận được: " . $token);
+
+
+$user = $authMiddleware->validateToken($token);
+error_log("Token giải mã: " . json_encode($user));
+error_log("Token không tồn tại hoặc sai định dạng! $user->id");
+
+if (!$user || !isset($user->id)) {
+    error_log("Token không hợp lệ!");
+    http_response_code(401);
+    echo json_encode(["error" => "Unauthorized"]);
+    exit();
+}
+
+$data["created_by"] = $user->id;
+$GLOBALS['currentUser'] = $user;
