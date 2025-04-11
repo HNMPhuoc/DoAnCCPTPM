@@ -1,13 +1,15 @@
 <?php
-if (!class_exists('Database')) { // Kiểm tra nếu class chưa tồn tại
-    class Database {
+if (!class_exists('Database')) {
+    class Database
+    {
         private $host = "localhost";
-        private $db_name = "demo9"; // Tên database
-        private $username = "root"; // Username mặc định của XAMPP
-        private $password = ""; // Password mặc định của XAMPP (để trống)
+        private $db_name = "demo9";
+        private $username = "root";
+        private $password = "123456";
         public $conn;
 
-        public function getConnection() {
+        public function getConnection()
+        {
             $this->conn = null;
             try {
                 $pdo = new PDO("mysql:host=" . $this->host, $this->username, $this->password);
@@ -26,4 +28,3 @@ if (!class_exists('Database')) { // Kiểm tra nếu class chưa tồn tại
         }
     }
 }
-?>
