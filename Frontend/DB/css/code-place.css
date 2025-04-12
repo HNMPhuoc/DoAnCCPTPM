@@ -1,0 +1,102 @@
+/* Cột trái (Khu vực nhập DBML) */
+.left-panel {
+    width: 30%;
+    background-color: #282a36;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid #44475a;
+}
+
+/* Khu vực nhập DBML (có số dòng) */
+.editor-container {
+    padding-top: 20px;
+    display: flex;
+    height: 80%;
+    overflow:hidden;
+    border-radius: 5px;
+
+}
+
+/* Hiển thị số dòng */
+.line-numbers {
+    width: 50px;
+    background-color: #44475a;
+    color: #6272a4;
+    padding: 10px;
+    text-align: right;
+    overflow-y: auto;
+    font-size: 14px;
+    border-right: 2px solid #6272a4;
+    overflow: hidden; /* Ẩn scroll dọc */
+}
+
+.line-numbers div {
+    padding: 2px 5px;
+    transition: background 0.3s ease;
+}
+
+.line-numbers div.active {
+    background-color: #50fa7b;
+    color: #000;
+}
+
+/* Ô nhập code - Full Height */
+textarea {
+    flex: 1;
+    background-color: #282a36;
+    color: #f8f8f2;
+    border: none;
+    padding: 10px;
+    padding-bottom: 0px;
+    font-size: 14px;
+    resize: none;
+    outline: none;
+    line-height: 20px;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x:auto; /* Giữ scroll ngang */
+    font-family: "Consolas", "Courier New", monospace;
+    height: 100%;
+    
+}
+
+/* Ẩn scrollbar dọc */
+textarea::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+/* Tuỳ chỉnh scrollbar ngang */
+textarea::-webkit-scrollbar:horizontal {
+    height: 8px;
+    cursor:grab;
+}
+
+textarea::-webkit-scrollbar-thumb:horizontal {
+    background: #007BFF;
+    border-radius: 4px;
+    cursor:grab;
+}
+
+textarea::-webkit-scrollbar-track:horizontal {
+    background: #44475a;
+     cursor:grab;
+}
+
+/* Nút Render (ở dưới cùng) */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

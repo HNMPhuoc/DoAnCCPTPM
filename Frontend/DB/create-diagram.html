@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB Diagram</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/code-place.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/untitled.css">
+    <link rel="stylesheet" href="css/openform.css">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+
+    <!-- Nhúng FontAwesome để có icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- pop up -->
+    <div id="popupContainerHere">
+        <!-- Overlay nền mờ -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+
+    <!-- Popup -->
+    <div class="popup-container" id="popupContainer">
+        <div class="popup-content">
+            <!-- Cột 1 -->
+            <div class="sidebar">
+                <div class="user-section">
+                    <div class="user-dropdown">
+                        <span id="userEmail">nguynhiem16321@gmail.com</span>
+                    </div>
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                        <li>Option 1</li>
+                        <li>Option 2</li>
+                    </ul>
+                </div>
+                <div class="new-diagram">
+                    <button class="new-btn">➕ New Diagram</button>
+                    <button class="new-btn">➕ New Sample Diagram</button>
+                </div>
+            </div>
+
+            <!-- Cột 2 -->
+            <div class="main-content">
+                <div class="search-bar">
+                    <i class="fa fa-search" style="color:white;"></i> 
+                    <input type="text" id="searchInput" placeholder="Search Diagrams" onkeyup="searchTable()">
+                    <span class="info">Free Plan | Diagrams: 5/10</span>
+                    <div class="close-popup-btn closebtn" onclick="closePopup()">&times;</div>
+                </div>
+                <div class="table-file">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Owner</th>
+                                <th>Date Modified</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body">
+                            <!-- Dữ liệu sẽ được thêm ở đây -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+    <header class="header">
+        <!-- <div class="header-left">
+            <img src="https://trudan.github.io/dbdiagram-oss/img/logo.4c4ad015.png" alt="dbdiagram-logo" class="logo">
+        </div> -->
+
+        <div class="header-center">
+            <img src="https://trudan.github.io/dbdiagram-oss/img/logo.4c4ad015.png" alt="dbdiagram-logo" class="logo">
+            <button class="header-btn" onclick="openPopup()"><i class="fa-solid fa-folder"></i>Open&#160;Untitled</button>
+            <button class="header-btn" onclick="toggleForm()"><i class="fa-solid fa-floppy-disk"></i><b>SAVE</b></button>
+            <button class="header-btn"><i class="fa-solid fa-clock"></i><b>HISTORY</b></button>
+            <div class="dropdown">
+                <button class="header-btn"><i class="fa-solid fa-file-import"></i> IMPORT&#160;▼</button>
+                <div class="dropdown-menu">
+                    <a href="#"><i class="fa-solid fa-file-code"></i> JSON</a>
+                    <a href="#"><i class="fa-solid fa-database"></i> MySQL</a>
+                    <a href="#"><i class="fa-solid fa-database"></i> PostgreSQL</a>
+                    <a href="#"><i class="fa-solid fa-server"></i> SQL Server</a>
+                    <hr>
+                    <a href="#"><i class="fa-solid fa-file-image"></i> SVG</a>
+                    <a href="#"><i class="fa-solid fa-image"></i> PNG</a>
+                    <a href="#"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+
+            <!-- Dropdown EXPORT -->
+            <div class="dropdown">
+                <button class="header-btn"><i class="fa-solid fa-file-export"></i> EXPORT&#160;▼</button>
+                <div class="dropdown-menu">
+                    <a href="#"><i class="fa-solid fa-file-code"></i> JSON</a>
+                    <a href="#"><i class="fa-solid fa-database"></i> MySQL</a>
+                    <a href="#"><i class="fa-solid fa-database"></i> PostgreSQL</a>
+                    <a href="#"><i class="fa-solid fa-server"></i> SQL Server</a>
+                    <hr>
+                    <a href="#"><i class="fa-solid fa-file-image"></i> SVG</a>
+                    <a href="#"><i class="fa-solid fa-image"></i> PNG</a>
+                    <a href="#"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            <!-- <button class="header-btn"><i class="fa-solid fa-upload"></i> Publish</button>    -->
+        </div>
+
+        <div class="header-right">
+            <div class="dropdown">
+                <button class="header-btn"><i class="fa-solid fa-question-circle"></i> Help ▼</button>
+                <div class="dropdown-menu">
+                    <a href="#"><i class="fa-solid fa-book"></i> Documentation</a>
+                    <a href="#"><i class="fa-solid fa-bug"></i> Release Notes</a>
+                    <a href="#"><i class="fa-solid fa-road"></i> Roadmap</a>
+                    <a href="#"><i class="fa-solid fa-comments"></i> Send Feedback</a>
+                    <a href="#"><i class="fa-solid fa-users"></i> Community</a>
+                    <a href="#"><i class="fa-solid fa-lightbulb"></i> Suggest Feature</a>
+                    <a href="#"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="header-btn"><i class="fa-solid fa-database"></i> dbx ▼</button>
+                <div class="dropdown-menu  dropdown-db">
+                    <a href="#"><i class="fa-solid fa-folder"></i> My Projects</a>
+                    <a href="#"><i class="fa-solid fa-cog"></i> Settings</a>
+                    <a href="html/login.html"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+
+            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR5yc4FMBhJGJUVJoqe3E8ZwYqQcHdJrhp81hrqyf1s7bu34f5I" alt="Avatar" class="avatar">
+        </div>
+    </header>
+
+
+    
+
+    <div id="product-form" class="hidden">
+        <h2>Thêm Sản Phẩm</h2>
+        <input type="text" id="prod-name" placeholder="Tên sản phẩm">
+        <input type="number" id="prod-category" value="1" hidden>
+        <button onclick="createProduct()">Tạo sản phẩm</button>
+    </div>
+
+    <div id="crdiagram-create-diagram">
+        <h2>Create New Table</h2>
+        <form id="crdiagram-create-table-form">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Length/Values</th>
+                        <th>Default</th>
+                        <th>Collation</th>
+                        <th>Attributes</th>
+                        <th>Null</th>
+                        <th>A_I</th>
+                        <th>Comments</th>
+                        <th>Virtuality</th>
+                        <th>Move column</th>
+                        <th>Media type</th>
+                        <th>Browser display transformation</th>
+                        <th>Input transformation</th>
+                    </tr>
+                </thead>
+                <tbody id="crdiagram-table-body">
+                    <tr>
+                        <td><input type="text" name="name[]" placeholder="Column Name" /></td>
+                        <td>
+                            <select name="type[]">
+                                <option value="INT">INT</option>
+                                <option value="VARCHAR">VARCHAR</option>
+                                <option value="TEXT">TEXT</option>
+                                <option value="DATE">DATE</option>
+                                <option value="DECIMAL">DECIMAL</option>
+                            </select>
+                        </td>
+                        <td><input type="text" name="length[]" placeholder="Length/Values" /></td>
+                        <td><input type="text" name="default[]" placeholder="Default Value" /></td>
+                        <td><input type="text" name="collation[]" placeholder="Collation" /></td>
+                        <td><input type="text" name="attributes[]" placeholder="Attributes" /></td>
+                        <td><input type="checkbox" name="null[]" value="1" /></td>
+                        <td><input type="checkbox" name="ai[]" value="1" /></td>
+                        <td><input type="text" name="comments[]" placeholder="Comments" /></td>
+                        <td><input type="text" name="virtuality[]" placeholder="Virtuality" /></td>
+                        <td><input type="text" name="move_column[]" placeholder="Move Column" /></td>
+                        <td><input type="text" name="media_type[]" placeholder="Media Type" /></td>
+                        <td><input type="text" name="browser_display_transformation[]" placeholder="Browser Display Transformation" /></td>
+                        <td><input type="text" name="input_transformation[]" placeholder="Input Transformation" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" onclick="addRow()">Add Row</button>
+            <div class="crdiagram-form-buttons">
+                <button type="submit">Create Table</button>
+                <button type="button" onclick="exportSQL()">Export SQL</button>
+                <button type="button" onclick="exportJSON()">Export JSON</button>
+                <button type="button" onclick="exportDBML()">Export DBML</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function addRow() {
+            var tableBody = document.getElementById('crdiagram-table-body');
+            var newRow = tableBody.rows[0].cloneNode(true); // Clone the first row
+            tableBody.appendChild(newRow);
+        }
+    
+        function exportSQL() {
+    var formData = new FormData(document.getElementById('crdiagram-create-table-form'));
+    var sql = "CREATE TABLE new_table (\n";
+    
+    // Lặp qua các dữ liệu trong FormData
+    formData.forEach((value, key) => {
+        if (key.startsWith('name')) {
+            var index = key.match(/\d+/);
+            if (index && index[0]) { // Kiểm tra nếu index hợp lệ
+                index = index[0];
+                var name = value;
+                var type = formData.get('type[' + index + ']');
+                var length = formData.get('length[' + index + ']');
+                var defaultValue = formData.get('default[' + index + ']');
+                var nullable = formData.get('null[' + index + ']') ? 'NULL' : 'NOT NULL';
+                var ai = formData.get('ai[' + index + ']') ? 'AUTO_INCREMENT' : '';
+                var comment = formData.get('comments[' + index + ']');
+                sql += `    ${name} ${type}(${length}) ${nullable} ${ai} COMMENT '${comment}',\n`;
+            }
+        }
+    });
+    sql = sql.slice(0, -2) + '\n);'; // Remove last comma
+    downloadFile('table_creation.sql', sql);
+}
+
+function exportJSON() {
+    var formData = new FormData(document.getElementById('crdiagram-create-table-form'));
+    var tableData = [];
+    
+    // Lặp qua các dữ liệu trong FormData
+    formData.forEach((value, key) => {
+        if (key.startsWith('name')) {
+            var index = key.match(/\d+/);
+            if (index && index[0]) { // Kiểm tra nếu index hợp lệ
+                index = index[0];
+                var column = {
+                    name: value,
+                    type: formData.get('type[' + index + ']'),
+                    length: formData.get('length[' + index + ']'),
+                    default: formData.get('default[' + index + ']'),
+                    null: formData.get('null[' + index + ']') ? true : false,
+                    ai: formData.get('ai[' + index + ']') ? true : false,
+                    comments: formData.get('comments[' + index + ']'),
+                    virtuality: formData.get('virtuality[' + index + ']'),
+                    move_column: formData.get('move_column[' + index + ']'),
+                    media_type: formData.get('media_type[' + index + ']'),
+                    browser_display_transformation: formData.get('browser_display_transformation[' + index + ']'),
+                    input_transformation: formData.get('input_transformation[' + index + ']')
+                };
+                tableData.push(column);
+            }
+        }
+    });
+    var json = JSON.stringify(tableData, null, 4);
+    downloadFile('table_creation.json', json);
+}
+
+function exportDBML() {
+    var formData = new FormData(document.getElementById('crdiagram-create-table-form'));
+    var dbml = "Table new_table {\n";
+    
+    // Lặp qua các dữ liệu trong FormData
+    formData.forEach((value, key) => {
+        if (key.startsWith('name')) {
+            var index = key.match(/\d+/);
+            if (index && index[0]) { // Kiểm tra nếu index hợp lệ
+                index = index[0];
+                var name = value;
+                var type = formData.get('type[' + index + ']');
+                var length = formData.get('length[' + index + ']');
+                var nullable = formData.get('null[' + index + ']') ? 'null' : 'not null';
+                dbml += `    ${name} ${type}(${length}) ${nullable}\n`;
+            }
+        }
+    });
+    dbml += "}"; // End table definition
+    downloadFile('table_creation.dbml', dbml);
+}
+
+function downloadFile(filename, content) {
+    var blob = new Blob([content], { type: 'text/plain' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+}
+
+    </script>
+    
+    <script src="script/script.js"></script>
+    <script src="script/homepage.js"></script>
+    <script src="script/code-place.js"></script>
+    <script src="script/untitled.js"></script>
+    <script src="script/openform.js"></script>
+
+        
+    <script src="script/api.js"></script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+#product-form {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: none; /* Ẩn mặc định */
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #f9f9f9;
+    position: absolute;
+    z-index: 9999;
+}
+
+input {
+    width: 90%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

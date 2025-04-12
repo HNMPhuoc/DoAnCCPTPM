@@ -1,0 +1,52 @@
+<!-- Overlay nền mờ -->
+<div class="popup-overlay" id="popupOverlay"></div>
+
+<!-- Popup -->
+<div class="popup-container" id="popupContainer">
+    <div class="popup-content">
+        <!-- Cột 1 -->
+        <div class="sidebar">
+            <div class="user-section">
+                <div class="user-dropdown">
+                    <span id="userEmail">nguynhiem16321@gmail.com</span>
+                    <!-- <button class="dropdown-btn" onclick="toggleDropdown()">▼</button> -->
+                </div>
+                <ul class="dropdown-menu" id="dropdownMenu">
+                    <li>Option 1</li>
+                    <li>Option 2</li>
+                </ul>
+            </div>
+            <div class="new-diagram">
+                <button class="new-btn">➕ New Diagram</button>
+                <button class="new-btn">➕ New Sample Diagram</button>
+            </div>
+        </div>
+
+        <!-- Cột 2 -->
+        <div class="main-content">
+            <div class="search-bar">
+                <i class="fa fa-search" style="color:white;"></i> <input type="text"id="searchInput" placeholder="Search Diagrams" onkeyup="searchTable()">
+                <span class="info">Free Plan | Diagrams: 5/10</span>
+                <div class="close-popup-btn closebtn"  onclick="closePopup()">&times;</div>
+            </div>
+            <div class="table-file">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Ower</th>
+                        <th>Date Modified</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="products-table-body">
+                  
+                </tbody>
+            </table>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
