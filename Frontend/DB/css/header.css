@@ -1,0 +1,166 @@
+/* ✅ HEADER CHÍNH */
+.header {
+    display: flex;
+    top: 0;
+    left: 0;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000000;
+    border-bottom: 2px solid #e0e0e0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    height: 60px;
+    box-sizing: border-box;
+    width:100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Đảm bảo header nằm trên các phần khác */
+    
+}
+
+/* ✅ CÁC PHẦN BÊN TRONG HEADER */
+.header-left, .header-center, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ✅ LOGO */
+.logo {
+    height: 30px;
+}
+
+/* ✅ TEXT ITEMS */
+.saved {
+    font-size: 14px;
+    color: green;
+    font-weight: 600;
+}
+.diagram-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+.personal {
+    color: gray;
+    font-size: 14px;
+}
+
+/* ✅ BUTTON CHUNG */
+.header-btn {
+    background: rgb(49, 49, 49);
+    /* border: 1px solid #ccc; */
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    margin:0;
+}
+
+.header-btn i {
+    font-size: 16px;
+}
+
+.header-btn:hover {
+    background-color: #f0f0f0;
+    border-color: #aaa;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ NÚT SHARE */
+.share-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s;
+}
+
+.share-btn:hover {
+    background: #0056b3;
+}
+
+
+
+/* ✅ AVATAR */
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.avatar:hover {
+    transform: scale(1.1);
+}
+
+/* ✅ DROPDOWN MENU */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top:10px;
+    padding-bottom: 10px; 
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    border-radius: 6px;
+    top: 40px;
+    left: 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    width: 180px;
+    padding: 8px 0;
+    z-index: 1000;
+    border: 10px solid #00000000;
+}
+.dropdown:hover .dropdown-menu,
+.dropdown-menu:hover {
+    display: block;
+}
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.dropdown-menu a:hover {
+    background: #f0f0f0;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+.dropdown-db {
+    left: auto; 
+    right: 0; /* Lùi menu về bên trái thay vì đẩy ra ngoài phải */
+}
+
+/* ✅ RESPONSIVE (THU NHỎ MÀN HÌNH) */
+@media (max-width: 1024px) {
+    .header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+    }
+    
+    .header-center {
+        display: none; /* Ẩn khi màn hình nhỏ */
+    }
+}
