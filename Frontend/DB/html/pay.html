@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription - VNPay</title>
+    <style>
+        /* CSS styles for subscription cards */
+    </style>
+</head>
+
+<body>
+    <button class="header-btn" onclick="sendPaymentRequest()">
+        <i class="fa-solid fa-bell"></i> Subscribe
+    </button>
+    <div id="#products-table-body">
+        <!-- Subscription cards go here -->
+
+    </div>
+    <script>async function fetchData(url, method = "GET", body = null, auth = false) {
+        let headers = { "Content-Type": "application/json" };
+        let savedToken = localStorage.getItem("token");
+        if (auth && savedToken) headers["Authorization"] = "Bearer " + savedToken;
+    
+        let options = { method, headers };
+        if (body) options.body = JSON.stringify(body);
+    
+        console.log("🛠 Sending Request:", { url, method, headers, body });
+    
+        try {
+            let res = await fetch(url, options);
+    
+            if (!res.ok) {
+                console.error(`❌ HTTP Error: ${res.status} ${res.statusText}`);
+                return { error: `HTTP Error ${res.status}` };
+            }
+    
+            // Lấy giá trị của Content-Type từ header của phản hồi
+            const contentType = res.headers.get("Content-Type");
+    
+            if (contentType && contentType.includes("application/json")) {
+                // Nếu là JSON, parse và trả về
+                let data = await res.json();
+                console.log("📩 Response (Parsed JSON):", data);
+                return data;
+            } else if (contentType && contentType.includes("text/html")) {
+                // Nếu là HTML, trả về dữ liệu dạng văn bản
+                let html = await res.text();
+                console.log("📩 Response (HTML):", html);
+                return html;
+            } else {
+                // Nếu không phải JSON hay HTML, trả về dữ liệu dạng văn bản
+                let text = await res.text();
+                console.log("📩 Response (Text):", text);
+                return text;
+            }
+        } catch (err) {
+            console.error("❌ Request failed:", err);
+            return { error: "Request failed" };
+        }
+    }
+    </script>
+    <script> 
+
+async function sendPaymentRequest() {
+    try {
+        // Gửi yêu cầu GET tới URL payment
+        let data = await fetchData("http://localhost:8000/payment", "GET", null, true);
+        
+        console.log("Data received:", data);
+
+        // Kiểm tra nếu data là chuỗi HTML
+        if (typeof data === 'string' && data.startsWith("<!DOCTYPE html>")) {
+            // Nếu trả về HTML, thay nội dung phần tử có id 'products-table-body'
+            document.getElementById("products-table-body").innerHTML = data;
+        } else {
+            // Nếu dữ liệu không phải HTML, giả định là JSON và hiển thị thông tin thanh toán
+            alert("Payment response: " + JSON.stringify(data));
+        }
+    } catch (error) {
+        console.log(error.message);
+        alert("Payment failed: " + error.message);
+    }
+}
+
+
+    </script>
+
+</body>
+
+
+</html>
